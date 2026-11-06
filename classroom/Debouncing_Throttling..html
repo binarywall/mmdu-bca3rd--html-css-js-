@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debounce vs Throttle</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f1f5f9;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px #ddd;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            color: #2563eb;
+        }
+
+        input {
+            width: 95%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .result {
+            margin-top: 15px;
+            padding: 12px;
+            background: #e0f2fe;
+            border-radius: 5px;
+            min-height: 20px;
+        }
+
+        .counter {
+            font-size: 24px;
+            font-weight: bold;
+            color: green;
+        }
+
+        .scroll-area {
+            height: 1000px;
+            text-align: center;
+            padding-top: 30px;
+            background: linear-gradient(white, lightblue);
+        }
+
+        .note {
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Debounce vs Throttle</h1>
+
+    <!-- DEBOUNCE SECTION -->
+
+    <div class="card">
+
+        <h2>1. Debounce Example</h2>
+
+        <p>
+            Type something in the search box.
+            Wait for 1 second after typing stops.
+        </p>
+
+        <input
+            type="text"
+            id="search"
+            placeholder="Search something..."
+        >
+
+        <div class="result" id="searchResult">
+            Waiting for input...
+        </div>
+
+        <p class="note">
+            Debounce Delay: 1000 milliseconds
+        </p>
+
+    </div>
+
+
+    <!-- THROTTLE SECTION -->
+
+    <div class="card">
+
+        <h2>2. Throttle Example</h2>
+
+        <p>
+            Scroll the webpage and observe
+            how frequently the function executes.
+        </p>
+
+        <p>Scroll Function Executed:</p>
+
+        <div class="counter" id="scrollCount">
+            0
+        </div>
+
+        <p class="note">
+            Throttle Delay: 1000 milliseconds
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- Extra scrolling area -->
+
+<div class="scroll-area">
+    <h2>Keep Scrolling!</h2>
+    <p>Observe the throttle counter above.</p>
+</div>
+
+
+<script>
+
+// ===================================
+// 1. DEBOUNCE
+// ===================================
+
+function debounce(fn, delay) {
+
+    let timer;
+
+    return function (...args) {
+
+        clearTimeout(timer);
+
+        timer = setTimeout(() => {
+            fn.apply(this, args);
+        }, delay);
+
+    };
+
+}
+
+
+// Search Function
+
+function searchData(event) {
+
+    let value = event.target.value;
+
+    document.getElementById("searchResult").innerText =
+        "Searching for: " + value;
+
+}
+
+
+// Apply Debounce
+
+let betterSearch = debounce(searchData, 1000);
+
+
+// Add Input Event
+
+document.getElementById("search").addEventListener(
+    "input",
+    betterSearch
+);
+
+
+// ===================================
+// 2. THROTTLE
+// ===================================
+
+function throttle(fn, delay) {
+
+    let lastTime = 0;
+
+    return function (...args) {
+
+        let currentTime = Date.now();
+
+        if (currentTime - lastTime >= delay) {
+
+            fn.apply(this, args);
+
+            lastTime = currentTime;
+
+        }
+
+    };
+
+}
+
+
+// Scroll Counter
+
+let count = 0;
+
+function scrollFunction() {
+
+    count++;
+
+    document.getElementById("scrollCount").innerText =
+        count;
+        console.log(count);
+
+}
+
+
+// Apply Throttle
+
+let betterScroll = throttle(scrollFunction, 10000);
+
+
+// Add Scroll Event
+
+window.addEventListener("scroll", betterScroll);
+
+</script>
+
+</body>
+</html>
+
+
+
+
+<!-- 
+Debounce vs Throttle in JavaScript (Easy Explanation)
+Both Debouncing and Throttling are JavaScript techniques used to control how frequently a function executes when an event happens repeatedly.
+
+For example:
+- Typing in a search box.
+- Scrolling a webpage.
+- Resizing a browser window.
+- Clicking a button repeatedly.
+The main difference is:
+- Debounce: Wait until the user stops performing an action.
+- Throttle: Execute a function only once within a fixed time interval.
+
+1. Debouncing – Wait until the user stops
+Real-life example:
+
+Imagine you are typing something in Google's search box.
+
+You type:
+
+J → Ja → Jav → Java → JavaScript
+
+Without debounce, the search function might execute 5 times.
+
+With debounce, JavaScript waits until you stop typing for 500 milliseconds and then executes the function only once.
+
+
+How does it work?
+1. User types something.
+2. A timer starts for 500 milliseconds.
+3. If the user types again, the previous timer is cancelled.
+4. A new timer starts.
+5. When the user stops typing for 500 milliseconds, the function executes.
+Use cases:
+- Search suggestions.
+- API calls while typing.
+- Form validation.
+- Auto-save after typing.
+
+
+2. Throttling – Execute at fixed intervals
+Real-life example:
+
+Imagine you are scrolling a webpage.
+
+The scroll event can fire hundreds of times.
+
+Suppose you want to execute a function only once every 1 second, regardless of how many times the user scrolls.
+
+That's throttling.
+
+How does it work?
+1. User starts scrolling.
+2. JavaScript checks the current time.
+3. If 1 second has passed since the last execution, the function runs.
+4. Further events within that 1 second are ignored.
+5. After 1 second, the function can execute again.
+Use cases:
+- Scroll events.
+- Window resizing.
+- Mouse movement tracking.
+- Preventing repeated button actions.
+
+
+3. Difference between Debounce and Throttle
+Debounce
+1-Waits until events stop
+2-Executes after inactivity
+3-Resets the timer on every event
+4-Best for search boxes
+5-Example: 500ms after typing stops
+
+Throttle
+1-Executes at fixed intervals
+2-Executes periodically during activity
+3-Does not reset the interval
+4-Best for scrolling
+5-Example: Once every 1000ms
+
+-->

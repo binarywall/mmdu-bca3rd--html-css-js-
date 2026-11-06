@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User data</title>
+</head>
+<body>
+    <form action="">
+        <table border="2" align="center">
+            <tr>
+                <th colspan="2">User Data</th>
+            </tr>
+            <tr>
+                <td>
+                    <label for="user_name">Name :</label>
+                </td>
+                <td>
+                    <input type="text" name="user_name" id="user_name" placeholder="Jhon" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="email">Email :</label>
+                </td>
+                <td>
+                    <input type="email" name="eamil" id="email" placeholder="user@email.com" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="contact">Contact :</label>
+                </td>
+                <td>
+                    <input type="number" name="contact" id="contact" placeholder="+91 00000000000" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="gender">Gender :</label>
+                </td>
+                <td>
+                    <input type="radio" name="gender" id="male"  > Male
+                    <input type="radio" name="gender" id="female"  > Female
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="skills">Skills :</label>
+                </td>
+                <td>
+                    <input type="checkbox" name="skills" id="HTML"  value="HTML"> HTML
+                    <input type="checkbox" name="css" id="CSS"  value="CSS"> CSS
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="course">Course :</label>
+                </td>
+                <td>
+                    <select name="course" id="course">
+                        <option value="BCA">BCA</option>
+                        <option value="MCA">MCA</option>
+                        <option value="B.Tech">B.Tech</option>
+                        <option value="M.Tech">M.Tech</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="address">Address</label>
+                </td>
+                <td>
+                    <textarea name="address" id="address" cols="20" rows="4">Textarea</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="date">Date</label>
+                </td>
+                <td>
+                    <input type="date" name="date" id="date">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="password">Password</label>
+                </td>
+                <td>
+                    <input type="password" name="password" id="password" placeholder="password">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Upload your CV
+                </td>
+                <td>
+                    <input type="file" name="cv" id="cv">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Submit">
+                    <input type="reset" value="Reset">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

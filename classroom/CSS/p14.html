@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS 2D/3D Transforms & Animations</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 30px;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .section {
+            margin: 50px auto;
+            max-width: 900px;
+        }
+
+        /* =========================
+           2D TRANSFORM
+        ========================== */
+
+        .transform-container {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .box {
+            width: 120px;
+            height: 120px;
+            background-color: lightblue;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid black;
+            transition: transform 0.5s;
+        }
+
+        .translate:hover {
+            transform: translate(30px, 20px);
+        }
+
+        .rotate:hover {
+            transform: rotate(45deg);
+        }
+
+        .scale:hover {
+            transform: scale(1.3);
+        }
+
+        .skew:hover {
+            transform: skew(20deg, 10deg);
+        }
+
+        /* =========================
+           3D TRANSFORM
+        ========================== */
+
+        .perspective {
+            perspective: 600px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .cube {
+            width: 180px;
+            height: 180px;
+            background-color: lightcoral;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 3px solid black;
+
+            transition: transform 1s;
+        }
+
+        .cube:hover {
+            transform: rotateX(45deg) rotateY(45deg);
+        }
+
+        /* 3D Flip Card */
+
+        .flip-container {
+            perspective: 800px;
+            width: 250px;
+            height: 180px;
+            margin: 30px auto;
+        }
+
+        .flip-card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s;
+        }
+
+        .flip-container:hover .flip-card {
+            transform: rotateY(180deg);
+        }
+
+        .front,
+        .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid black;
+            backface-visibility: hidden;
+        }
+
+        .front {
+            background-color: lightgreen;
+        }
+
+        .back {
+            background-color: lightyellow;
+            transform: rotateY(180deg);
+        }
+
+        /* =========================
+           KEYFRAME ANIMATION
+        ========================== */
+
+        @keyframes moveBox {
+            0% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(500px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .moving-box {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+
+            animation-name: moveBox;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+        }
+
+        /* Rotating Animation */
+
+        @keyframes rotateBox {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .rotating-box {
+            width: 100px;
+            height: 100px;
+            background-color: lightcoral;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            animation: rotateBox 3s linear infinite;
+        }
+
+        /* Bounce Animation */
+
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-100px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .bounce-box {
+            width: 100px;
+            height: 100px;
+            background-color: lightgreen;
+
+            animation: bounce 1.5s ease-in-out infinite;
+        }
+
+        /* Animated Button */
+
+        .animated-button {
+            padding: 15px 30px;
+            border: 2px solid black;
+            cursor: pointer;
+
+            transition: transform 0.3s;
+        }
+
+        .animated-button:hover {
+            transform: scale(1.15);
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h1>CSS Transform & Animation Showcase</h1>
+
+    <!-- 2D Transform -->
+    <div class="section">
+
+        <h2>1. CSS 2D Transforms</h2>
+
+        <div class="transform-container">
+
+            <div class="box translate">
+                Translate
+            </div>
+
+            <div class="box rotate">
+                Rotate
+            </div>
+
+            <div class="box scale">
+                Scale
+            </div>
+
+            <div class="box skew">
+                Skew
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- 3D Transform -->
+    <div class="section">
+
+        <h2>2. CSS 3D Transform</h2>
+
+        <div class="perspective">
+
+            <div class="cube">
+                Hover Me
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Flip Card -->
+    <div class="section">
+
+        <h2>3. 3D Flip Card</h2>
+
+        <div class="flip-container">
+
+            <div class="flip-card">
+
+                <div class="front">
+                    Front Side
+                </div>
+
+                <div class="back">
+                    Back Side
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Moving Animation -->
+    <div class="section">
+
+        <h2>4. Moving Animation</h2>
+
+        <div class="moving-box">
+        </div>
+
+    </div>
+
+    <!-- Rotation Animation -->
+    <div class="section">
+
+        <h2>5. Rotating Animation</h2>
+
+        <div class="rotating-box">
+            ROTATE
+        </div>
+
+    </div>
+
+    <!-- Bounce Animation -->
+    <div class="section">
+
+        <h2>6. Bounce Animation</h2>
+
+        <div class="bounce-box">
+        </div>
+
+    </div>
+
+    <!-- Button -->
+    <div class="section">
+
+        <h2>7. Transform on Hover</h2>
+
+        <button class="animated-button">
+            Hover Me
+        </button>
+
+    </div>
+
+</body>
+</html>

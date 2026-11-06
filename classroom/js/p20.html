@@ -1,0 +1,990 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Management SPA</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+    <style>
+        body {
+            background: #f3f4f6;
+        }
+        .navbar {
+            background: #212529;
+        }
+        .main-container {
+            min-height: 85vh;
+            padding: 30px;
+        }
+        .section {
+            display: none;
+        }
+        .active-section {
+            display: block;
+        }
+        .dashboard-card {
+            border: none;
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+        }
+        .info-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .info-output {
+            margin-top: 12px;
+            color: #198754;
+            font-weight: 500;
+            overflow-wrap: anywhere;
+        }
+        .nav-link {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar navbar-dark navbar-expand-lg">
+        <div class="container">
+
+            <a class="navbar-brand" href="#home"
+                onclick="showPage('home', event)">
+                Student SPA
+            </a>
+
+            <div class="navbar-nav flex-row flex-wrap gap-3">
+
+                <a class="nav-link"
+                    href="#home"
+                    onclick="showPage('home', event)">
+                    Home
+                </a>
+
+                <a class="nav-link"
+                    href="#register"
+                    onclick="showPage('register', event)">
+                    Register
+                </a>
+
+                <a class="nav-link"
+                    href="#dashboard"
+                    onclick="showPage('dashboard', event)">
+                    Dashboard
+                </a>
+
+                <a class="nav-link"
+                    href="#bom"
+                    onclick="showPage('bom', event)">
+                    BOM Info
+                </a>
+
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container main-container">
+
+        <!-- HOME SECTION -->
+
+        <section id="home" class="section">
+
+            <div class="text-center mt-5">
+
+                <h1>Welcome to Student Management SPA</h1>
+
+                <p class="text-muted">
+                    Dynamic Single Page Application using JavaScript DOM and BOM.
+                </p>
+
+                <button class="btn btn-primary"
+                    onclick="showPage('register')">
+                    Register Student
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- REGISTRATION SECTION -->
+
+        <section id="register" class="section">
+
+            <div class="card shadow p-4 mx-auto"
+                style="max-width:600px">
+
+                <h3 class="mb-4">Student Registration</h3>
+
+                <form id="studentForm">
+
+                    <div class="mb-3">
+
+                        <label class="form-label">Full Name</label>
+
+                        <input type="text"
+                            id="name"
+                            class="form-control"
+                            placeholder="Enter your name">
+
+                        <small class="text-danger" id="nameError"></small>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label class="form-label">Email</label>
+
+                        <input type="email"
+                            id="email"
+                            class="form-control"
+                            placeholder="Enter email">
+
+                        <small class="text-danger" id="emailError"></small>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label class="form-label">Password</label>
+
+                        <input type="password"
+                            id="password"
+                            class="form-control"
+                            placeholder="Enter password">
+
+                        <small class="text-danger" id="passwordError"></small>
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label class="form-label">Confirm Password</label>
+
+                        <input type="password"
+                            id="confirmPassword"
+                            class="form-control"
+                            placeholder="Confirm password">
+
+                        <small class="text-danger" id="confirmError"></small>
+
+                    </div>
+
+
+                    <button type="submit"
+                        class="btn btn-success w-100">
+                        Register
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+        <!-- DASHBOARD SECTION -->
+
+        <section id="dashboard" class="section">
+
+            <h2 class="mb-4">Student Dashboard</h2>
+
+            <div class="row g-3">
+
+                <div class="col-md-4">
+
+                    <div class="card dashboard-card shadow p-3">
+
+                        <h5>Student Name</h5>
+
+                        <h4 id="studentName">Not Registered</h4>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="card dashboard-card shadow p-3">
+
+                        <h5>Email Address</h5>
+
+                        <h6 id="studentEmail">Not Available</h6>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="card dashboard-card shadow p-3">
+
+                        <h5>Registration Status</h5>
+
+                        <h4 class="text-success" id="status">Pending</h4>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <button class="btn btn-warning mt-4"
+                onclick="showPage('register')">
+                Edit Registration
+            </button>
+
+            <button class="btn btn-danger mt-4"
+                onclick="logout()">
+                Logout
+            </button>
+
+        </section>
+
+
+        <!-- BOM SECTION -->
+
+        <section id="bom" class="section">
+
+            <h2 class="mb-4">Browser Object Model (BOM)</h2>
+
+
+            <!-- 1. WINDOW OBJECT -->
+
+            <div class="info-box">
+
+                <h5>1. Window Object</h5>
+
+                <p>Window object represents the browser window.</p>
+
+                <button class="btn btn-primary btn-sm"
+                    onclick="showAlert()">
+                    Alert
+                </button>
+
+                <button class="btn btn-warning btn-sm"
+                    onclick="showConfirm()">
+                    Confirm
+                </button>
+
+                <button class="btn btn-success btn-sm"
+                    onclick="showPrompt()">
+                    Prompt
+                </button>
+
+                <button class="btn btn-secondary btn-sm"
+                    onclick="showWindowInfo()">
+                    Window Size
+                </button>
+
+                <button class="btn btn-dark btn-sm"
+                    onclick="openWindow()">
+                    Open New Window
+                </button>
+
+                <p id="windowInfo" class="info-output"></p>
+
+            </div>
+
+
+            <!-- 2. SCREEN OBJECT -->
+
+            <div class="info-box">
+
+                <h5>2. Screen Object</h5>
+
+                <p>Screen object provides information about the user's screen.</p>
+
+                <button class="btn btn-primary btn-sm"
+                    onclick="showScreenInfo()">
+                    Get Screen Information
+                </button>
+
+                <p id="screenInfo" class="info-output"></p>
+
+            </div>
+
+
+            <!-- 3. LOCATION OBJECT -->
+
+            <div class="info-box">
+
+                <h5>3. Location Object</h5>
+
+                <p>Location object provides information about the current URL.</p>
+
+                <button class="btn btn-primary btn-sm"
+                    onclick="showLocationInfo()">
+                    Current URL
+                </button>
+
+                <button class="btn btn-warning btn-sm"
+                    onclick="reloadPage()">
+                    Reload Page
+                </button>
+
+                <button class="btn btn-success btn-sm"
+                    onclick="redirectPage()">
+                    Redirect to Google
+                </button>
+
+                <p id="locationInfo" class="info-output"></p>
+
+            </div>
+
+
+            <!-- 4. HISTORY OBJECT -->
+
+            <div class="info-box">
+
+                <h5>4. History Object</h5>
+
+                <p>History object allows navigation through browser history.</p>
+
+                <button class="btn btn-primary btn-sm"
+                    onclick="goBack()">
+                    Back
+                </button>
+
+                <button class="btn btn-success btn-sm"
+                    onclick="goForward()">
+                    Forward
+                </button>
+
+                <button class="btn btn-info btn-sm"
+                    onclick="addHistory()">
+                    Add History Entry
+                </button>
+
+                <p id="historyInfo" class="info-output"></p>
+
+            </div>
+
+
+            <!-- 5. NAVIGATOR OBJECT -->
+
+            <div class="info-box">
+
+                <h5>5. Navigator Object</h5>
+
+                <p>Navigator object provides browser and device information.</p>
+
+                <button class="btn btn-primary btn-sm"
+                    onclick="showNavigatorInfo()">
+                    Browser Information
+                </button>
+
+                <p id="navigatorInfo" class="info-output"></p>
+
+            </div>
+
+
+            <!-- 6. POPUPS -->
+
+            <div class="info-box">
+
+                <h5>6. Popup Boxes</h5>
+
+                <p>JavaScript provides different popup dialog boxes.</p>
+
+                <button class="btn btn-primary btn-sm"
+                    onclick="showAlert()">
+                    Alert Box
+                </button>
+
+                <button class="btn btn-warning btn-sm"
+                    onclick="showConfirm()">
+                    Confirm Box
+                </button>
+
+                <button class="btn btn-success btn-sm"
+                    onclick="showPrompt()">
+                    Prompt Box
+                </button>
+
+            </div>
+
+
+            <!-- 7. COOKIES -->
+
+            <div class="info-box">
+
+                <h5>7. Cookies</h5>
+
+                <p>Cookies store small information in the browser.</p>
+
+                <button class="btn btn-success btn-sm"
+                    onclick="saveCookie()">
+                    Save Cookie
+                </button>
+
+                <button class="btn btn-primary btn-sm"
+                    onclick="readCookie()">
+                    Read Cookie
+                </button>
+
+                <button class="btn btn-danger btn-sm"
+                    onclick="deleteCookie()">
+                    Delete Cookie
+                </button>
+
+                <p id="cookieInfo" class="info-output"></p>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        // =====================================
+        // 1. SPA NAVIGATION
+        // =====================================
+
+        function showPage(pageId, event) {
+
+            if (event) {
+                event.preventDefault();
+            }
+
+            let sections = document.querySelectorAll(".section");
+
+            sections.forEach(function(section) {
+                section.classList.remove("active-section");
+            });
+
+            let selectedPage = document.getElementById(pageId);
+
+            if (selectedPage) {
+
+                selectedPage.classList.add("active-section");
+
+                history.pushState(
+                    { page: pageId },
+                    "",
+                    "#" + pageId
+                );
+
+            }
+
+        }
+
+
+        // Browser Back and Forward
+
+        window.addEventListener("popstate", function(event) {
+
+            let page = event.state?.page ||
+                location.hash.substring(1) ||
+                "home";
+
+            displayPage(page);
+
+        });
+
+
+        // Display page without adding history
+
+        function displayPage(pageId) {
+
+            let sections = document.querySelectorAll(".section");
+
+            sections.forEach(function(section) {
+                section.classList.remove("active-section");
+            });
+
+            let selectedPage = document.getElementById(pageId);
+
+            if (selectedPage) {
+                selectedPage.classList.add("active-section");
+            } else {
+                document.getElementById("home").classList.add("active-section");
+            }
+
+        }
+
+
+        // Initial Page Loading
+
+        window.addEventListener("DOMContentLoaded", function() {
+
+            let page = location.hash.substring(1) || "home";
+
+            displayPage(page);
+
+        });
+
+
+        // =====================================
+        // 2. FORM VALIDATION
+        // =====================================
+
+        document.getElementById("studentForm")
+            .addEventListener("submit", function(e) {
+
+                e.preventDefault();
+
+                let name = document.getElementById("name").value.trim();
+
+                let email = document.getElementById("email").value.trim();
+
+                let password = document.getElementById("password").value;
+
+                let confirmPassword =
+                    document.getElementById("confirmPassword").value;
+
+                let valid = true;
+
+
+                // Clear previous errors
+
+                document.querySelectorAll("small").forEach(function(error) {
+                    error.textContent = "";
+                });
+
+
+                // Name Validation
+
+                if (name.length < 3) {
+
+                    document.getElementById("nameError").textContent =
+                        "Name must contain at least 3 characters";
+
+                    valid = false;
+
+                }
+
+
+                // Email Validation
+
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+
+                    document.getElementById("emailError").textContent =
+                        "Enter a valid email address";
+
+                    valid = false;
+
+                }
+
+
+                // Password Validation
+
+                if (password.length < 6) {
+
+                    document.getElementById("passwordError").textContent =
+                        "Password must contain at least 6 characters";
+
+                    valid = false;
+
+                }
+
+
+                // Confirm Password Validation
+
+                if (password !== confirmPassword) {
+
+                    document.getElementById("confirmError").textContent =
+                        "Passwords do not match";
+
+                    valid = false;
+
+                }
+
+
+                // Registration Successful
+
+                if (valid) {
+
+                    document.getElementById("studentName").textContent = name;
+
+                    document.getElementById("studentEmail").textContent = email;
+
+                    document.getElementById("status").textContent = "Registered";
+
+                    setCookie("studentName", name, 1);
+
+                    alert("Registration Successful!");
+
+                    showPage("dashboard");
+
+                }
+
+            });
+
+
+        // =====================================
+        // 3. WINDOW OBJECT
+        // =====================================
+
+        function showAlert() {
+
+            window.alert("Welcome to Student Management SPA!");
+
+        }
+
+
+        function showConfirm() {
+
+            let result = window.confirm("Do you want to continue?");
+
+            if (result) {
+
+                alert("You clicked OK");
+
+            } else {
+
+                alert("You clicked Cancel");
+
+            }
+
+        }
+
+
+        function showPrompt() {
+
+            let name = window.prompt("Enter your name:");
+
+            if (name !== null && name.trim() !== "") {
+
+                alert("Welcome " + name);
+
+            }
+
+        }
+
+
+        function showWindowInfo() {
+
+            let width = window.innerWidth;
+
+            let height = window.innerHeight;
+
+            document.getElementById("windowInfo").textContent =
+                "Window Width: " + width +
+                "px | Window Height: " + height + "px";
+
+        }
+
+
+        function openWindow() {
+
+            let newWindow = window.open(
+                "https://www.google.com",
+                "_blank"
+            );
+
+            if (!newWindow) {
+                alert("Popup blocked by browser!");
+            }
+
+        }
+
+
+        // =====================================
+        // 4. SCREEN OBJECT
+        // =====================================
+
+        function showScreenInfo() {
+
+            let width = screen.width;
+
+            let height = screen.height;
+
+            let availWidth = screen.availWidth;
+
+            let availHeight = screen.availHeight;
+
+            document.getElementById("screenInfo").textContent =
+
+                "Screen Width: " + width +
+                " | Screen Height: " + height +
+                " | Available Width: " + availWidth +
+                " | Available Height: " + availHeight;
+
+        }
+
+
+        // =====================================
+        // 5. LOCATION OBJECT
+        // =====================================
+
+        function showLocationInfo() {
+
+            document.getElementById("locationInfo").textContent =
+
+                "URL: " + location.href +
+                " | Hostname: " + location.hostname +
+                " | Protocol: " + location.protocol;
+
+        }
+
+
+        function reloadPage() {
+
+            location.reload();
+
+        }
+
+
+        function redirectPage() {
+
+            let result = confirm("Do you want to visit Google?");
+
+            if (result) {
+
+                location.href = "https://www.google.com";
+
+            }
+
+        }
+
+
+        // =====================================
+        // 6. HISTORY OBJECT
+        // =====================================
+
+        function goBack() {
+
+            history.back();
+
+        }
+
+
+        function goForward() {
+
+            history.forward();
+
+        }
+
+
+        function addHistory() {
+
+            history.pushState(
+                { page: "bom" },
+                "",
+                "#bom-info"
+            );
+
+            document.getElementById("historyInfo").textContent =
+                "New history entry added successfully!";
+
+        }
+
+
+        // =====================================
+        // 7. NAVIGATOR OBJECT
+        // =====================================
+
+        function showNavigatorInfo() {
+
+            let browser = navigator.userAgent;
+
+            let language = navigator.language;
+
+            let online = navigator.onLine;
+
+            let cookiesEnabled = navigator.cookieEnabled;
+
+            document.getElementById("navigatorInfo").textContent =
+
+                "Browser: " + browser +
+                " | Language: " + language +
+                " | Online Status: " + (online ? "Online" : "Offline") +
+                " | Cookies Enabled: " + cookiesEnabled;
+
+        }
+
+
+        // =====================================
+        // 8. COOKIES
+        // =====================================
+
+        function setCookie(name, value, days) {
+
+            let date = new Date();
+
+            date.setTime(
+                date.getTime() + (days * 24 * 60 * 60 * 1000)
+            );
+
+            let expires = "expires=" + date.toUTCString();
+
+            document.cookie =
+                name + "=" + encodeURIComponent(value) +
+                ";" + expires + ";path=/;SameSite=Lax";
+
+        }
+
+
+        function getCookie(name) {
+
+            let cookies = document.cookie.split(";");
+
+            for (let cookie of cookies) {
+
+                cookie = cookie.trim();
+
+                if (cookie.startsWith(name + "=")) {
+
+                    return decodeURIComponent(
+                        cookie.substring(name.length + 1)
+                    );
+
+                }
+
+            }
+
+            return "";
+
+        }
+
+
+        function saveCookie() {
+
+            let name = prompt("Enter student name:");
+
+            if (name !== null && name.trim() !== "") {
+
+                setCookie("studentName", name.trim(), 1);
+
+                document.getElementById("cookieInfo").textContent =
+                    "Cookie saved successfully!";
+
+            }
+
+        }
+
+
+        function readCookie() {
+
+            let name = getCookie("studentName");
+
+            document.getElementById("cookieInfo").textContent =
+
+                name ? "Student Name: " + name : "No cookie found";
+
+        }
+
+
+        function deleteCookie() {
+
+            document.cookie =
+                "studentName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Lax";
+
+            document.getElementById("cookieInfo").textContent =
+                "Cookie deleted successfully!";
+
+        }
+
+
+        // =====================================
+        // 9. LOGOUT
+        // =====================================
+
+        function logout() {
+
+            let result = confirm("Are you sure you want to logout?");
+
+            if (result) {
+
+                document.getElementById("studentName").textContent =
+                    "Not Registered";
+
+                document.getElementById("studentEmail").textContent =
+                    "Not Available";
+
+                document.getElementById("status").textContent =
+                    "Pending";
+
+                document.getElementById("studentForm").reset();
+
+                showPage("home");
+
+                alert("Logged out successfully!");
+
+            }
+
+        }
+
+
+        // =====================================
+        // 10. ONLINE / OFFLINE EVENTS
+        // =====================================
+
+        window.addEventListener("online", function() {
+
+            console.log("Internet connection restored!");
+
+        });
+
+
+        window.addEventListener("offline", function() {
+
+            console.log("Internet connection lost!");
+
+        });
+
+
+        // =====================================
+        // 11. WINDOW RESIZE EVENT
+        // =====================================
+
+        window.addEventListener("resize", function() {
+
+            console.log(
+                "Window Width: " + window.innerWidth +
+                " | Height: " + window.innerHeight
+            );
+
+        });
+
+
+        // =====================================
+        // 12. LOAD COOKIE DATA
+        // =====================================
+
+        window.addEventListener("load", function() {
+
+            let savedName = getCookie("studentName");
+
+            if (savedName) {
+
+                document.getElementById("studentName").textContent =
+                    savedName;
+
+                document.getElementById("status").textContent =
+                    "Registered";
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

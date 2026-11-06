@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Type of Event</title>
+</head>
+<body>
+    <h1 id="h1">Heading</h1>
+    <input type="text" name="n1" id="n1" placeholder="text box">
+    <input type="text" name="n2" id="n2" placeholder="text box">
+    <script>
+        let h1=document.getElementById("h1");
+        let n1=document.getElementById("n1");
+        let n2=document.getElementById("n2");
+
+        h1.addEventListener('click',(e)=>{
+            e.target.textContent=`Update by '${e.type}' event`
+            console.log(e.type)
+        })
+        h1.addEventListener('dblclick',(e)=>{
+            e.target.textContent=`Update by '${e.type}' event`
+            console.log(e.type)
+        })
+        h1.addEventListener('mousedown',(e)=>{
+            e.target.textContent=`Update by '${e.type}' event`
+            console.log(e.type)
+        })
+        h1.addEventListener('mouseup',(e)=>{
+            e.target.textContent=`Update by '${e.type}' event`
+            console.log(e.type)
+        })
+        h1.addEventListener('mouseover',(e)=>{
+            e.target.textContent=`Update by '${e.type}' event`
+            console.log(e.type)
+        })
+        h1.addEventListener('mouseout',(e)=>{
+            e.target.textContent=`Update by '${e.type}' event`
+            console.log(e.type)
+        })
+        h1.addEventListener('mousemove',(e)=>{
+            e.target.textContent=`Update by '${e.type}' event`
+            console.log(e.type)
+        })
+        document.addEventListener('keydown',(e)=>{
+            e.target.textContent=`Update by '${e.key}' event`
+            console.log(e.key)
+        })
+        document.addEventListener('keyup',(e)=>{
+            e.target.textContent=`Update by '${e.key}' event`
+            console.log(e)
+        })      
+        document.addEventListener('keypress',(e)=>{
+            e.target.textContent=`Update by '${e.key}' event`
+            console.log(e)
+        })
+        n1.addEventListener('focus',(e)=>{
+            console.log(e.type)
+        })      
+        n1.addEventListener('blur',(e)=>{
+            console.log(e.type)
+        })      
+        n1.addEventListener('input',(e)=>{
+            console.log(e.target.value)
+        })      
+        n2.addEventListener('change',(e)=>{
+            console.log("On change",e.target.value)
+        })      
+    </script>
+</body>
+</html>

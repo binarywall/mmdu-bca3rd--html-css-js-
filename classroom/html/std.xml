@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE university SYSTEM "university.dtd">
+
+<university name="Maharishi Markandeshwar University">
+    <department name="Computer Applications">
+
+        <student rollno="1122001" status="enrolled">
+
+            <personalDetails>
+                <name>Aman Sharma</name>
+                <email>aman@example.com</email>
+                <contact>+91-9876543210</contact>
+            </personalDetails>
+
+            <courses>
+
+                <course code="BCA-307" credits="1.0">
+                    <title>Web Designing Lab</title>
+                    <semester>3</semester>
+                    <grade>A+</grade>
+                </course>
+
+                <course code="BCA-301" credits="4.0">
+                    <title>Data Structures</title>
+                    <semester>3</semester>
+                    <grade>A</grade>
+                </course>
+
+            </courses>
+
+        </student>
+    </department>
+</university>
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<university
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="std.xsd"
+    name="Maharishi Markandeshwar University">
+
+    <department name="Computer Applications">
+
+        <student rollno="1122001" status="enrolled">
+
+            <personalDetails>
+                <name>Aman Sharma</name>
+                <email>aman@example.com</email>
+                <contact>+91-9876543210</contact>
+            </personalDetails>
+
+            <courses>
+
+                <course code="BCA-307" credits="1.0">
+                    <title>Web Designing Lab</title>
+                    <semester>3</semester>
+                    <grade>A+</grade>
+                </course>
+
+                <course code="BCA-301" credits="4.0">
+                    <title>Data Structures</title>
+                    <semester>3</semester>
+                    <grade>A</grade>
+                </course>
+
+            </courses>
+
+        </student>
+    </department>
+
+</university>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Print Media Query Example</title>
+  <style>
+    /* ===================================================
+       1. SCREEN STYLES (What you see in the browser)
+       =================================================== */
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #a8c1db;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+    }
+
+    .print-btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      font-size: 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .print-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .banner {
+      background-color: #e3f2fd;
+      padding: 15px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      color: #0d47a1;
+    }
+    .table{
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+    tr:nth-child(even) {background-color: #f2f2f2;}
+
+    /* ===================================================
+       2. PRINT MEDIA QUERY (Applied only when printing)
+       =================================================== */
+    @media print {
+      /* Remove browser default margins and set paper margins */
+      @page {
+        margin: 15mm;
+        size: auto;
+      }
+
+      /* Reset body backgrounds to save ink */
+      body {
+        background-color: #ffffff;
+        color: #000000;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+        box-shadow: none; /* No drop shadows on paper */
+        border-radius: 0;
+      }
+
+      /* Hide interactive or unnecessary elements when printing */
+      .no-print,
+      .print-btn,
+      .banner {
+        display: none !important;
+      }
+
+      /* Optional: Display URL of links next to their anchor text */
+      a[href^="http"]:after {
+        content: " (" attr(href) ")";
+        font-size: 0.9em;
+        color: #555;
+      }
+
+      /* Prevent awkward breaks inside sections or tables */
+      .printable-section {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header-bar">
+      <h1>Invoice / Report</h1>
+      <!-- This button triggers browser print and will disappear on paper -->
+      <button class="print-btn" onclick="window.print()">Print Page</button>
+    </div>
+
+    <!-- This banner is only visible on the screen -->
+    <div class="banner no-print">
+      💡 <em>Notice:</em> This alert box will be hidden when printing or saving as PDF!
+    </div>
+
+    <section class="printable-section">
+      <h2>Summary Details</h2>
+      <p>
+        This content is optimized for print. Background colors are minimized, shadows are removed, 
+        and margins are set cleanly for standard A4 / Letter paper sizes.
+      </p>
+      
+      <p>
+        Visit our official site: <a href="https://example.com">Example.com</a>
+      </p>
+    </section>
+
+    <section class="printable-section">
+      <h3>Items Table</h3>
+      <table border="1" cellpadding="8" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Description</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Web Design</td>
+            <td>Landing page design and asset preparation</td>
+            <td>₹2000.00</td>
+          </tr>
+          <tr>
+            <td>Development</td>
+            <td>HTML/CSS print styling implementation</td>
+            <td>₹4000.00</td>
+          </tr>
+          <tr>
+            <td>Development</td>
+            <td>HTML/CSS print styling implementation</td>
+            <td>₹4000.00</td>
+          </tr>
+          <tr>
+            <td>Development</td>
+            <td>HTML/CSS print styling implementation</td>
+            <td>₹4000.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+</body>
+</html>

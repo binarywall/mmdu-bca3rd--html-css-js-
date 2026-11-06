@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Website</title>
+</head>
+<body vlink="#3f7192" link="#3f7192" alink="red" bgcolor="#ecf8fe">
+    <table width="800px" border="1" align="center" bgcolor="#edf5ff">
+        <tr>
+            <td colspan="4" height="60px" >
+                <img src="https://img.magnific.com/free-vector/v915_53876-174949.jpg?semt=ais_hybrid&w=740&q=80" alt="website header" width="100%">
+            </td>
+        </tr>
+         <tr>
+            <td colspan="4">
+                <!-- 
+                    direction (left, right, up, down). 
+                    behavior  (scroll, slide, alternate)
+                    scrollamount -  Sets the speed of the animation in pixels.
+                    loop: Specifies how many times the animation runs before stopping (default is infinite).
+                    bgcolor: Changes the background color of the scrolling zone
+                -->
+                <marquee behavior="alternate" direction="left" scrollamount="10px" bgcolor="#3f7192"> 
+                    <font color="white">This is website for small project using only HTML Tags !</font>
+                </marquee>
+            </td>
+        </tr>
+        <tr>
+            <th><a href="home.html">Home</a></th>
+            <th><a href="multimediaTag.html">Multi Media Tag</a></th>
+            <th><a href="register.html">Register</a></th>
+            <th><a href="contactus.html">Contact Us</a></th>
+        </tr>
+        <tr>
+            <td colspan="4" height="600px">
+                <table border="0" width="100%" cellspacing="10px">
+                    <tr height="200px">
+                        <td colspan="3">
+                            <h3><font color="#497b9b"><u>Video Tag</u></font></h3>
+                            <p align="justify">
+                                The HTML &lt;video&gt; tag is used to natively embed video media player content directly into a webpage without requiring third-party plugins.
+                                <p>
+                                    <code><mark>&lt;video width="300" controls autoplay loop&gt;<br>
+                                        &lt;source src="./video/video1.mp4" type="video/mp4"&gt;<br>
+                                        Your browser does not support the HTML video tag. <br>
+                                    &lt;/video&gt;</mark></code>
+                                </p>
+                            </p>
+                        </td>
+                        <td  width="300px" align="center">
+                            <video width="300" controls autoplay loop>
+                                <source src="./asset/video1.mp4" type="video/mp4">
+                                Your browser does not support the HTML video tag.
+                            </video>
+
+                        </td>
+                    </tr>
+                    <tr height="200px">
+                        <td  width="300px">
+                            <iframe width="300" height="200" src="https://www.youtube.com/embed/D0UnqGm_miA?si=_22J_-fm5DVeQD4N" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+
+                            </iframe>
+                        </td>
+                        <td colspan="3">
+                            <h3><font color="#497b9b"><u>Iframe Tag</u></font></h3>
+                            <p align="justify">
+                                An <code>&lt;iframe&gt;</code> (Inline Frame) is an HTML element used to embed another document or webpage within your current webpage. It functions as a window that displays external content (like a YouTube video, a Google Map, or another HTML file) without requiring the user to leave your site
+                        </td>
+                    </tr>
+                    <tr height="200px">
+                        <td  width="300px">
+                            <iframe width="300" height="200" src="contactus.html" title="Example Website" >
+
+                            </iframe>
+                        </td>
+                        <td colspan="3">
+                            <h3><font color="#497b9b"><u>Iframe Tag</u></font></h3>
+                            <p align="justify">
+                                An <code>&lt;iframe&gt;</code> (Inline Frame) is an HTML element used to embed another document or webpage within your current webpage. It functions as a window that displays external content (like a YouTube video, a Google Map, or another HTML file) without requiring the user to leave your site
+                        </td>
+                    </tr>
+                    <tr height="200px">
+                        <td colspan="3">
+                            <h3><font color="#497b9b"><u>Audio Tag</u></font></h3>
+                            <p align="justify">
+                                By default, the &lt;audio&gt; element is invisible unless you include the controls attribute, which renders the browser's native play, pause, and volume interface.
+                            </p>
+                        </td>
+                        <td  width="300px" align="center" >
+                            <audio controls>
+                                <source src="./asset/audio1.mp3" type="audio/mp3">
+                            </audio>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="4">
+                <p>
+                    <font color="#497b9b">BCA - 3rd | Web Technology - 2026 | B-302, 307</font>
+                </p>
+            </th>
+        </tr>
+    </table>
+</body>
+</html>

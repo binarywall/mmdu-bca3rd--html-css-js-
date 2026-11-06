@@ -1,0 +1,185 @@
+/* Basic Page Styling */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 30px;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+
+
+/* CSS Box Model */
+
+.form-container {
+    width: 650px;
+
+    /* Content + Padding + Border + Margin */
+    margin: 20px auto;
+    padding: 30px;
+
+    border: 2px solid #333;
+    border-radius: 10px;
+
+    background-color: white;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Heading */
+
+h1 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+p {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+
+/* Form Group */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+
+/* Labels */
+
+.form-group > label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+
+/* Input, Select and Textarea */
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+
+    border: 1px solid #999;
+    border-radius: 5px;
+
+    font-size: 15px;
+}
+
+
+/* Pseudo-class :focus */
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border: 2px solid blue;
+    background-color: #f0f8ff;
+}
+
+
+/* Pseudo-class :hover */
+
+input:hover,
+select:hover,
+textarea:hover {
+    border-color: #555;
+}
+
+
+/* Radio and Checkbox */
+
+.options {
+    display: flex;
+    gap: 20px;
+}
+
+.options label,
+.terms label {
+    font-weight: normal;
+}
+
+
+/* Pseudo-class :checked */
+
+input[type="radio"]:checked,
+input[type="checkbox"]:checked {
+    accent-color: green;
+}
+
+
+/* Required Fields */
+
+input:required,
+select:required,
+textarea:required {
+    background-color: #fffdf0;
+}
+
+
+/* Buttons */
+
+.buttons {
+    margin-top: 25px;
+    text-align: center;
+}
+
+button {
+    padding: 12px 25px;
+    margin: 5px;
+
+    border: none;
+    border-radius: 5px;
+
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+/* Button :hover */
+
+button[type="submit"] {
+    background-color: green;
+    color: white;
+}
+
+button[type="submit"]:hover {
+    background-color: darkgreen;
+    transform: scale(1.05);
+}
+
+button[type="reset"] {
+    background-color: gray;
+    color: white;
+}
+
+button[type="reset"]:hover {
+    background-color: black;
+}
+
+
+/* Pseudo-class :valid */
+
+input:valid,
+select:valid,
+textarea:valid {
+    border-color: green;
+}
+
+
+/* Pseudo-class :invalid */
+
+input:invalid {
+    border-color: red;
+}

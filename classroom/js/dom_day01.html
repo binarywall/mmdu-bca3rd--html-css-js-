@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="heading">Heading</h1>
+    <script>
+        let ele=document.getElementById("heading");
+        let newEle=document.createElement("h2");
+        newEle.id="heading2";
+        newEle.textContent="this is heading 2 from js dom";
+        newEle.style.backgroundColor="pink";
+        newEle.style.display="none"
+        ele.after(newEle);
+        ele.remove();
+
+        let newUl=document.createElement("ul");
+        newUl.id="ul_list";
+        let data=["web","php","node","dsa","python"];
+        let fragment=document.createDocumentFragment();
+        for(listdata of data){
+            let newList=document.createElement("li");
+            newList.textContent=listdata;
+            fragment.appendChild(newList)
+        }
+        newUl.appendChild(fragment);
+        newEle.after(newUl)
+        let newdata=document.createElement("li");
+        newdata.textContent="aiml"
+        newUl.childNodes[2].after(newdata)
+        console.dir(newUl.childNodes[2])
+    </script>
+</body>
+</html>

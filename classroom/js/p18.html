@@ -1,0 +1,328 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Form Validation</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+</head>
+
+<body class="bg-light">
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-7 col-lg-6">
+
+                <div class="card shadow border-0 rounded-4">
+                    <div class="card-header bg-primary text-white text-center py-3">
+                        <h3 class="mb-0">Student Registration</h3>
+                        <p class="mb-0">JavaScript Form Validation</p>
+                    </div>
+
+                    <div class="card-body p-4">
+
+                        <form id="registrationForm" novalidate>
+
+                            <!-- Name -->
+                            <div class="mb-3">
+                                <label for="name" class="form-label">
+                                    Full Name
+                                </label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    class="form-control"
+                                    placeholder="Enter your full name"
+                                >
+                                <small id="nameError" class="text-danger"></small>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="mb-3">
+                                <label for="email" class="form-label">
+                                    Email Address
+                                </label>
+                                <input
+                                    type="text"
+                                    id="email"
+                                    class="form-control"
+                                    placeholder="Enter your email"
+                                >
+                                <small id="emailError" class="text-danger"></small>
+                            </div>
+
+                            <!-- Mobile -->
+                            <div class="mb-3">
+                                <label for="mobile" class="form-label">
+                                    Mobile Number
+                                </label>
+                                <input
+                                    type="text"
+                                    id="mobile"
+                                    class="form-control"
+                                    placeholder="Enter 10-digit mobile number"
+                                >
+                                <small id="mobileError" class="text-danger"></small>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="mb-3">
+                                <label for="password" class="form-label">
+                                    Password
+                                </label>
+                                <input
+                                    type="password"
+                                    id="password"
+                                    class="form-control"
+                                    placeholder="Create a password"
+                                >
+                                <small id="passwordError" class="text-danger"></small>
+                            </div>
+
+                            <!-- Confirm Password -->
+                            <div class="mb-3">
+                                <label for="confirmPassword" class="form-label">
+                                    Confirm Password
+                                </label>
+                                <input
+                                    type="password"
+                                    id="confirmPassword"
+                                    class="form-control"
+                                    placeholder="Re-enter password"
+                                >
+                                <small id="confirmPasswordError" class="text-danger"></small>
+                            </div>
+
+                            <!-- Submit -->
+                            <button type="submit" class="btn btn-primary w-100">
+                                Register
+                            </button>
+
+                            <p id="successMessage"
+                               class="text-success text-center mt-3 mb-0">
+                            </p>
+
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Access
+        let form = document.getElementById("registrationForm");
+
+        let nameInput = document.getElementById("name");
+        let emailInput = document.getElementById("email");
+        let mobileInput = document.getElementById("mobile");
+        let passwordInput = document.getElementById("password");
+        let confirmPasswordInput =
+            document.getElementById("confirmPassword");
+
+        // Display error message
+        function showError(input, errorId, message) {
+            document.getElementById(errorId).textContent = message;
+
+            input.classList.add("is-invalid");
+            input.classList.remove("is-valid");
+        }
+
+        // Display success styling for a field
+        function showSuccess(input, errorId) {
+            document.getElementById(errorId).textContent = "";
+
+            input.classList.remove("is-invalid");
+            input.classList.add("is-valid");
+        }
+
+        // Validate Name
+        function validateName() {
+            let name = nameInput.value.trim();
+
+            if (name === "") {
+                showError(nameInput, "nameError", "Name is required.");
+                return false;
+            }
+
+            if (name.length < 3) {
+                showError(
+                    nameInput,
+                    "nameError",
+                    "Name must contain at least 3 characters."
+                );
+                return false;
+            }
+
+            showSuccess(nameInput, "nameError");
+            return true;
+        }
+
+        // Validate Email
+        function validateEmail() {
+            let email = emailInput.value.trim();
+
+            if (email === "") {
+                showError(emailInput, "emailError", "Email is required.");
+                return false;
+            }
+
+            if (!email.includes("@") || !email.includes(".")) {
+                showError(
+                    emailInput,
+                    "emailError",
+                    "Enter an email containing @ and a domain."
+                );
+                return false;
+            }
+
+            showSuccess(emailInput, "emailError");
+            return true;
+        }
+
+        // Validate Mobile Number
+        function validateMobile() {
+            let mobile = mobileInput.value.trim();
+
+            if (mobile === "") {
+                showError(
+                    mobileInput,
+                    "mobileError",
+                    "Mobile number is required."
+                );
+                return false;
+            }
+
+            if (mobile.length !== 10 || isNaN(mobile)) {
+                showError(
+                    mobileInput,
+                    "mobileError",
+                    "Enter exactly 10 digits."
+                );
+                return false;
+            }
+
+            showSuccess(mobileInput, "mobileError");
+            return true;
+        }
+
+        // Validate Password
+        function validatePassword() {
+            let password = passwordInput.value;
+
+            if (password.trim() === "") {
+                showError(
+                    passwordInput,
+                    "passwordError",
+                    "Password is required."
+                );
+                return false;
+            }
+
+            if (password.length < 8) {
+                showError(
+                    passwordInput,
+                    "passwordError",
+                    "Password must be at least 8 characters."
+                );
+                return false;
+            }
+
+            if (
+                !password.includes("!") &&
+                !password.includes("@") &&
+                !password.includes("#")
+            ) {
+                showError(
+                    passwordInput,
+                    "passwordError",
+                    "Include at least one !, @, or # symbol."
+                );
+                return false;
+            }
+
+            showSuccess(passwordInput, "passwordError");
+            return true;
+        }
+
+        // Validate Confirm Password
+        function validateConfirmPassword() {
+            let password = passwordInput.value;
+            let confirmPassword = confirmPasswordInput.value;
+
+            if (confirmPassword === "") {
+                showError(
+                    confirmPasswordInput,
+                    "confirmPasswordError",
+                    "Please confirm your password."
+                );
+                return false;
+            }
+
+            if (password !== confirmPassword) {
+                showError(
+                    confirmPasswordInput,
+                    "confirmPasswordError",
+                    "Passwords do not match."
+                );
+                return false;
+            }
+
+            showSuccess(confirmPasswordInput, "confirmPasswordError");
+            return true;
+        }
+
+        // Submit Event
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            document.getElementById("successMessage").textContent = "";
+
+            let isNameValid = validateName();
+            let isEmailValid = validateEmail();
+            let isMobileValid = validateMobile();
+            let isPasswordValid = validatePassword();
+            let isConfirmPasswordValid = validateConfirmPassword();
+
+            if (
+                isNameValid &&
+                isEmailValid &&
+                isMobileValid &&
+                isPasswordValid &&
+                isConfirmPasswordValid
+            ) {
+                document.getElementById("successMessage").textContent =
+                    "Registration successful!";
+
+                form.reset();
+
+                // Remove Bootstrap validation styles after reset
+                document.querySelectorAll(".form-control").forEach(
+                    function (input) {
+                        input.classList.remove("is-valid", "is-invalid");
+                    }
+                );
+            }
+        });
+
+        // Validate fields when the user leaves an input
+        nameInput.addEventListener("blur", validateName);
+        emailInput.addEventListener("blur", validateEmail);
+        mobileInput.addEventListener("blur", validateMobile);
+        passwordInput.addEventListener("blur", validatePassword);
+        confirmPasswordInput.addEventListener(
+            "blur",
+            validateConfirmPassword
+        );
+    </script>
+
+</body>
+</html>

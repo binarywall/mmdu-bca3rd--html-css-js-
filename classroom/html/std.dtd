@@ -1,0 +1,33 @@
+<!ELEMENT university (department)>
+<!ATTLIST university
+    name CDATA #REQUIRED
+>
+
+<!ELEMENT department (student)>
+<!ATTLIST department
+    name CDATA #REQUIRED
+>
+
+<!ELEMENT student (personalDetails, courses)>
+<!ATTLIST student
+    rollno CDATA #REQUIRED
+    status (enrolled|completed|inactive) "enrolled"
+>
+
+<!ELEMENT personalDetails (name, email, contact)>
+
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT contact (#PCDATA)>
+
+<!ELEMENT courses (course+)>
+
+<!ELEMENT course (title, semester, grade)>
+<!ATTLIST course
+    code CDATA #REQUIRED
+    credits CDATA #REQUIRED
+>
+
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT semester (#PCDATA)>
+<!ELEMENT grade (#PCDATA)>

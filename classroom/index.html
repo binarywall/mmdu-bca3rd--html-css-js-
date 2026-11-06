@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            position:relative;
+            top: 100px;
+            left: 100px;
+            height: 400px;
+            background-color: rgb(228, 127, 5);
+            border: 2px solid black;
+            width: 400px;
+            animation-name: myAnimations;
+            animation-duration: 10s;
+            transition: ease 1s;
+            transition-property: all;
+        }
+       @keyframes myAnimations {
+          0%   {background-color: red;}
+        25%  {background-color: yellow;}
+        50%  {background-color: blue;}
+        100% {background-color: green;}
+       }
+       .container:hover{
+           transform: translate(100px);
+           transform: scale(-2rem);
+           transform: rotate(45deg);
+       }
+       *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+       }
+       .parent{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap: 2rem;
+        justify-items: center;
+        align-items: center;
+       }
+       .parent .item1,.item2,.item3,.item4,.item5{
+        height: 150px;
+        width: 150px;
+        box-sizing: border-box;
+        background-color: white;
+        border-radius: 10px;
+        border: 3px solid black;
+        padding: 50px;
+        box-shadow: 0px 40px 40px rgba(0, 0, 0, 0.1);
+       }
+       .item7{
+        height: 150px;
+        width: 150px;
+        box-sizing: border-box;
+        box-sizing: border-box;
+        background-color: white;
+        border-radius: 10px;
+        border: 3px solid black;
+        padding: 50px;
+       }
+       .parent div:hover{
+        transform: translate(150px);
+       }
+       .item1{
+        transition: ease 1s;
+       }
+       .item2{
+        transition: ease-in 1s;
+       }
+       .item3{
+        transition: ease-in-out 1s;
+       }
+       .item4{
+        transition: ease-out 1s;
+       }
+       .item5{
+        transition: linear 1s;
+       }
+
+       .loader{
+        height: 50px;
+        width: 50px;
+        border: 6px solid #f3f3f3; 
+        border-top: 6px solid #3498db;  
+        border-radius: 50%; 
+        animation: spin 1s linear infinite;
+       }
+       @keyframes spin {
+         0%{
+            transform: rotate(0deg);
+         }
+         100%{
+            transform: rotate(360deg);
+         }
+       }
+    </style>
+</head>
+<body>
+    <!-- <div class="container">
+    </div> -->
+
+    <div class="parent">
+        <div class="item1">ease</div>
+        <div class="item2">ease-in</div>
+        <div class="item3">ease-in-out</div>
+        <div class="item4">ease-out</div>
+        <div class="item5">linear</div>
+        <div class="item7">
+            <div class="loader"></div>
+        </div>
+        <div class="item8"></div>
+        <div class="item9"></div>
+    </div>
+    
+</body>
+</html>

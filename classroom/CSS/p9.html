@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CSS Types Example</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styleP9.css">
+
+    <!-- Internal CSS -->
+    <style>
+        .internal {
+            color: darkgreen;
+            font-family: Georgia, serif;
+            text-align: center;
+            border: 2px solid green;
+            margin: 20px;
+            padding: 15px;
+        }
+
+        .internal p {
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 class="external-heading">CSS Styling Example</h1>
+
+    <!-- Inline CSS -->
+    <div style="
+        color: white;
+        background-color: darkblue;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        border: 3px solid black;
+        margin: 30px;
+        padding: 20px;
+    ">
+        <h2>Inline CSS</h2>
+        <p>This section is styled using Inline CSS.</p>
+    </div>
+
+    <!-- Internal CSS -->
+    <div class="internal">
+        <h2>Internal CSS</h2>
+        <p>This section is styled using Internal CSS.</p>
+    </div>
+
+    <!-- External CSS -->
+    <div class="external">
+        <h2>External CSS</h2>
+        <p>This section is styled using an external stylesheet.</p>
+    </div>
+
+</body>
+</html>

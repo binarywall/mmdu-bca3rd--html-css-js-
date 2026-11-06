@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Data</title>
+</head>
+<body>
+    <table border="2" align="center">
+        <tr>
+            <td>Name</td>
+            <td><span id="name"></span></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><span id="email"></span></td>
+        </tr>
+    </table>
+
+    <script>
+        const params=new URLSearchParams(window.location.search);
+        console.log(params);
+
+        document.getElementById("name").textContent=params.get('name');
+        document.getElementById("email").textContent=params.get('email');
+    </script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS Dimensions, Outlines, Lists and Cursors</title>
+
+    <style>
+        /* Main Container */
+        .container {
+            width: 80%;
+            min-width: 500px;
+            max-width: 1000px;
+            height: 500px;
+            min-height: 400px;
+            max-height: 600px;
+
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+
+            outline: 4px solid navy;
+            outline-offset: 8px;
+        }
+
+        /* Outline Examples */
+        .outline-box {
+            padding: 15px;
+            margin: 20px;
+            background-color: white;
+        }
+
+        .solid {
+            outline: 3px solid green;
+        }
+
+        .dashed {
+            outline: 3px dashed blue;
+        }
+
+        .dotted {
+            outline: 3px dotted red;
+        }
+
+        /* Custom Unordered List */
+        .skills {
+            list-style-type: square;
+            list-style-position: inside;
+        }
+
+        .skills li {
+            margin: 8px;
+        }
+
+        /* Custom Ordered List */
+        .modules {
+            list-style-type: upper-roman;
+        }
+
+        .modules li {
+            padding: 5px;
+        }
+
+        /* Cursor Examples */
+        .pointer {
+            cursor: pointer;
+        }
+
+        .help {
+            cursor: help;
+        }
+
+        .wait {
+            cursor: wait;
+        }
+
+        .not-allowed {
+            cursor: not-allowed;
+        }
+
+        .crosshair {
+            cursor: crosshair;
+        }
+
+        /* Scroll Box */
+        .scroll-box {
+            width: 400px;
+            height: 120px;
+            border: 2px solid black;
+            padding: 10px;
+
+            overflow: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Student Information Portal</h1>
+
+        <h2>1. CSS Outline Examples</h2>
+
+        <div class="outline-box solid">
+            Solid Outline
+        </div>
+
+        <div class="outline-box dashed">
+            Dashed Outline
+        </div>
+
+        <div class="outline-box dotted">
+            Dotted Outline
+        </div>
+
+        <h2>2. Student Skills</h2>
+
+        <ul class="skills">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>Bootstrap</li>
+            <li>React.js</li>
+        </ul>
+
+        <h2>3. Course Modules</h2>
+
+        <ol class="modules">
+            <li>Web Designing</li>
+            <li>JavaScript</li>
+            <li>Bootstrap</li>
+            <li>React</li>
+        </ol>
+
+        <h2>4. Cursor Examples</h2>
+
+        <button class="pointer">Pointer Cursor</button>
+        <button class="help">Help Cursor</button>
+        <button class="wait">Wait Cursor</button>
+        <button class="not-allowed">Not Allowed</button>
+
+        <h2>5. Scrollbar</h2>
+
+        <div class="scroll-box">
+            CSS allows developers to control the dimensions of
+            HTML elements. The width and height properties define
+            the size of an element. The min-width and max-width
+            properties control the minimum and maximum size.
+            Similarly, min-height and max-height control the
+            vertical dimensions.
+
+            CSS outlines are drawn outside the border of an element.
+            Lists can be customized using different marker styles.
+            Cursor properties change the appearance of the mouse
+            pointer when it moves over an element.
+        </div>
+
+    </div>
+
+</body>
+</html>
